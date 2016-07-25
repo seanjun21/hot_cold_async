@@ -15,7 +15,7 @@ var hotColdReducer = function(state, action) {
 
   if (action.type === actions.MAKE_GUESS) {
     if (action.guess > 0 && action.guess <= 100) {
-      var difference = Math.abs(state[0].correct - action.guess);
+      var difference = Math.abs(state.correct - action.guess);
       var hotness;
 
       if (difference > 50) {
