@@ -9,11 +9,17 @@ var hotColdReducer = function(state, action) {
       correct: randNum,
       guess: null,
       counter: 0,
-      hotness: null
+      hotness: null,
+      relative: null
     };
   }
 
   if (action.type === actions.MAKE_GUESS) {
+    if (state.counter > 10) {
+      console.log('just stop');
+      return state;
+    }
+
     if (action.guess > 0 && action.guess <= 100) {
       var difference = Math.abs(state.correct - action.guess);
       var hotness;
@@ -24,16 +30,36 @@ var hotColdReducer = function(state, action) {
         hotness = 'Cold';
       } else if (difference > 15) {
         hotness = 'Warm';
-      } else if (difference > 1) {
+      } else if (difference > 10) {
         hotness = 'Hot';
+      } else if (difference > 5) {
+        hotness = 'SO HOT';
+      } else if (difference >= 1) {
+        hotness = 'ALEX HOT';
       } else {
         hotness = 'Got it!';
       }
 
+      var oldDiff = Math.abs(state.correct - state.guess);
+      var relative;
+
+      if (!state.hotness) {
+        relative = null;
+      } else if (difference < oldDiff) {
+        relative = 'You are getting warmer';
+      } else if (difference > oldDiff) {
+        relative = 'You are getting colder';
+      } else {
+        relative = 'You are getting stupider';
+      }
+
+      console.log(hotness);
+      console.log(relative);
       return Object.assign({}, state, {
         guess: action.guess,
         counter: state.counter + 1,
-        hotness: hotness
+        hotness: hotness,
+        relative: relative
       });
     }
   }
@@ -41,19 +67,3 @@ var hotColdReducer = function(state, action) {
 };
 
 exports.hotColdReducer = hotColdReducer;
-
-
-// var MAKE_GUESS = 'MAKE_GUESS';
-// var makeGuess = function(guess) {
-//   return {
-//     type: MAKE_GUESS,
-//     guess: guess
-//   };
-// };
-
-// var NEW_GAME = 'NEW_GAME';
-// var newGame = function() {
-//   return {
-//     type: NEW_GAME
-//   };
-// };

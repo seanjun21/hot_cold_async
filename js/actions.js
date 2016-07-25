@@ -1,18 +1,18 @@
 // ACTIONS are like messengers telling REDUCERS (are like event handlers) what action to be done
 // Only create ACTIONS that will attach to event listeners
 
+// displays instructions on how to play
+var WHAT = 'WHAT';
+var what = function() {
+  return {
+    type: WHAT
+  };
+};
 
 var NEW_GAME = 'NEW_GAME';
 var newGame = function() {
   return {
     type: NEW_GAME
-  };
-};
-
-var WHAT = 'WHAT';
-var what = function() {
-  return {
-    type: WHAT
   };
 };
 
