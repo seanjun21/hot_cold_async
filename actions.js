@@ -24,3 +24,6 @@ var makeGuess = function(guess) {
     guess: guess
   };
 };
+
+
+// Use Ref for input field
