@@ -1,22 +1,24 @@
 var React = require( 'react');
 var connect = require( 'react-redux').connect;
 var Nav = require( './nav');
-var Overlay = rquire( './overlay');
+var Overlay = require( './overlay');
 var Game = require( './game');
 
 var GameContainer = React.createClass({
   render: function() {
     return(
-      <header>
+      <div>
+        <header>
 
-        <Nav />
+          <Nav />
 
-        <Overlay />
+          <Overlay />
 
-        <h1>HOT or COLD</h1>
+          <h1>HOT or COLD</h1>
 
-      </header>
-      <Game />
+        </header>
+        <Game />
+      </div>
     );
   }
 });

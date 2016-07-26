@@ -4,7 +4,7 @@ var connect = require( 'react-redux' ).connect;
 var Game = React.createClass({
   render: function() {
     return(
-      <section className="game"> <!-- Guessing Section -->
+      <section className="game"> 
         <h2 id="feedback">Make your Guess!</h2>
         <form>
           <input type="text" name="userGuess" id="userGuess" className="text" maxlength="3" autocomplete="off" placeholder="Enter your Guess" required/>
