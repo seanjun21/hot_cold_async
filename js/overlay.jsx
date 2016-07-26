@@ -1,14 +1,13 @@
-var React = require( 'react' );
-var connect = require( 'react-redux' ).connect;
+var React = require('react');
 
 var Overlay = React.createClass({
   render: function() {
-    return(
+    return (
       <div className="overlay" id="modal">
         <div className="content">
           <h3>What do I do?</h3>
           <div>
-            <p>This is a Hot or Cold Number Guessing Game. The game goes like this: </p>
+            <p>This is a Hot or Cold Number Guessing Game. The game goes like this:</p>
             <ul>
               <li>1. I pick a <strong>random secret number</strong> between 1 to 100 and keep it hidden.</li>
               <li>2. You need to <strong>guess</strong> until you can find the hidden secret number.</li>

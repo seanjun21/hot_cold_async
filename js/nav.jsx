@@ -1,18 +1,30 @@
-var React = require( 'react' );
-var connect = require( 'react-redux' ).connect;
+var React = require('react');
+var connect = require('react-redux').connect;
+var actions = require('./actions');
 
 var Nav = React.createClass({
+  newGame: function () {
+    this.props.dispatch(actions.newGame());
+  },
+  what: function () {
+    // TODO: send action to reducer
+  },
   render: function() {
-
-    return(
+    return (
       <nav>
-				<ul className="clearfix">
-					<li><a className="what" href="#">What ?</a></li>
-					<li><a className="new" href="#">+ New Game</a></li>
-				</ul>
-			</nav>
+        <ul className="clearfix">
+          <li>
+            <a className="what" href="#" onClick={this.what}>What ?</a>
+          </li>
+          <li>
+            <a className="new" href="#" onClick={this.newGame}>+ New Game</a>
+          </li>
+        </ul>
+      </nav>
     );
   }
 });
 
-module.exports = Nav;
+var Container = connect()(Nav);
+
+module.exports = Container;
