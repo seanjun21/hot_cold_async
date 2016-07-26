@@ -7,15 +7,12 @@ var Game = require( './game');
 var GameContainer = React.createClass({
   render: function() {
     return(
-      <header> <!--Header -->
+      <header>
 
-        <!-- Top Navigation -->
         <Nav />
 
-        <!-- Modal Information Box -->
         <Overlay />
 
-        <!-- logo text -->
         <h1>HOT or COLD</h1>
 
       </header>
