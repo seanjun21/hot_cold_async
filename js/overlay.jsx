@@ -1,9 +1,15 @@
 var React = require('react');
+var actions = require('./actions');
+var connect = require('react-redux').connect;
 
 var Overlay = React.createClass({
+  what: function() {
+    this.props.dispatch( actions.what() );
+  },
   render: function() {
+    var style = this.props.show ? {display: 'unset'} : {};
     return (
-      <div className="overlay" id="modal">
+      <div className="overlay" style={style} id="modal">
         <div className="content">
           <h3>What do I do?</h3>
           <div>
@@ -14,7 +20,7 @@ var Overlay = React.createClass({
               <li>3. You will <strong>get feedback</strong> on how close ("hot") or far ("cold") your guess is.</li>
             </ul>
             <p>So, Are you ready?</p>
-            <a className="close" href="#">Got It!</a>
+            <a className="close" href="#" onClick={this.what}>Got It!</a>
           </div>
         </div>
       </div>
@@ -22,4 +28,6 @@ var Overlay = React.createClass({
   }
 });
 
-module.exports = Overlay;
+var Container = connect()(Overlay);
+
+module.exports = Container;

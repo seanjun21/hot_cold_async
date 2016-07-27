@@ -4,10 +4,10 @@ var actions = require( './actions' );
 
 var Nav = React.createClass( {
   newGame: function() {
-    this.props.dispatch( actions.newGame() );
+    location.reload();
   },
   what: function() {
-    // TODO: send action to reducer
+    this.props.dispatch( actions.what() );
   },
   render: function() {
     return (

@@ -8,6 +8,7 @@ var Game = React.createClass( {
     event.preventDefault();
     var userGuess = this.refs.userGuess.value;
     this.props.dispatch( actions.makeGuess( userGuess ) );
+    this.refs.userGuess.value = '';
   },
   render: function() {
     var guessList = [];
