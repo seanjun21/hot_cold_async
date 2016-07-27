@@ -1,5 +1,12 @@
 var actions = require('./actions');
 
+/**
+ * []
+ * @param  {[type]} state  [description]
+ * @param  {[type]} action [description]
+ * @return {[type]}        [description]
+ */
+
 var hotColdReducer = function(state, action) {
   state = state || {};
 

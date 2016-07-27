@@ -5,6 +5,18 @@ var Nav = require( './nav' );
 var Overlay = require( './overlay' );
 var Game = require( './game' );
 
+
+/**
+ * Create GameContainer component
+ * @param  {boolean} hits.props.games.show - If True, displays overlay.
+ * @param {array} this.props.games.guesslist - Array of user guesses.
+ * @param {number} this.props.games.counter - Keeps track of guess attempts.
+ * @param {string} this.props.games.hotness - Feedback on how close the guess is to the answer.
+ * @param {string} this.props.games.relative - Compares user's progresses.
+ * @return {HTML} Displays game app.
+ */
+
+
 var GameContainer = React.createClass( {
   render: function() {
     return (
