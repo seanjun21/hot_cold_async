@@ -1,12 +1,12 @@
-var React = require('react');
-var connect = require('react-redux').connect;
-var actions = require('./actions');
+var React = require( 'react' );
+var connect = require( 'react-redux' ).connect;
+var actions = require( './actions' );
 
-var Nav = React.createClass({
-  newGame: function () {
-    this.props.dispatch(actions.newGame());
+var Nav = React.createClass( {
+  newGame: function() {
+    this.props.dispatch( actions.newGame() );
   },
-  what: function () {
+  what: function() {
     // TODO: send action to reducer
   },
   render: function() {
@@ -23,8 +23,8 @@ var Nav = React.createClass({
       </nav>
     );
   }
-});
+} );
 
-var Container = connect()(Nav);
+var Container = connect()( Nav );
 
 module.exports = Container;
