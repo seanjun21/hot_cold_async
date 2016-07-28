@@ -1,5 +1,6 @@
 // ACTIONS are like messengers telling REDUCERS (are like event handlers) what action to be done
 // Only create ACTIONS that will attach to event listeners
+var fetch = require( 'isomorphic-fetch' );
 
 // displays instructions on how to play
 var WHAT = 'WHAT';
@@ -42,8 +43,8 @@ var fetchFewestError = function( error ) {
 
 var fetchFewest = function() {
   return function( dispatch ) {
-    var url = 'http://localhost:8080/fewest-guesses/';
-    return fetch( url ).then( function( response ) {
+    var url = 'http://localhost:3000/fewest-guesses/';
+    return fetch( url, { mode: 'no-cors' } ).then( function( response ) {
       if ( response.status < 200 || response.status >= 300 ) {
         var error = new Error( response.statusText );
         error.response = response;
@@ -75,20 +76,23 @@ var updateFewestError = function( error ) {
 };
 
 var updateFewest = function( attempt ) {
+  console.log( attempt, 'ATTEMPT' );
   return function( dispatch ) {
     var url = 'http://localhost:8080/fewest-guesses/' + attempt;
     return fetch( url ).then( function( response ) {
-      if ( response.status < 200 || response.status >= 300 ) {
-        var error = new Error( response.statusText );
-        error.response = response;
-        throw error;
-      }
-      return response.json();
-    } ).then( function( data ) {
-      return dispatch( updateFewestSuccess( data ) );
-    } ).catch( function( error ) {
-      return dispatch( updateFewestError( error ) );
-    } );
+        if ( response.status < 200 || response.status >= 300 ) {
+          var error = new Error( response.statusText );
+          error.response = response;
+          throw error;
+        }
+        return response.json();
+      } )
+      .then( function( data ) {
+        console.log( data, 'DATA' );
+        return dispatch( updateFewestSuccess( data ) );
+      } ).catch( function( error ) {
+        return dispatch( updateFewestError( error ) );
+      } );
   };
 };
 

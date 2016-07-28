@@ -24,7 +24,8 @@ var hotColdReducer = function( state, action ) {
       hotness: 'Make your Guess!',
       relative: null,
       guesslist: [],
-      show: false
+      show: false,
+      complete: false
     };
   }
 
@@ -35,14 +36,10 @@ var hotColdReducer = function( state, action ) {
         relative: null
       } );
     }
-
-    if ( state.hotness === 'Got it!' ) {
-      return state;
-    }
-
     if ( action.guess > 0 && action.guess <= 100 ) {
       var difference = Math.abs( state.correct - action.guess );
       var hotness;
+      var complete = false;
 
       if ( difference > 50 ) {
         hotness = 'Super Cold';
@@ -58,6 +55,7 @@ var hotColdReducer = function( state, action ) {
         hotness = 'ALEX HOT';
       } else {
         hotness = 'Got it!';
+        complete = true;
       }
 
       var oldDiff = Math.abs( state.correct - state.guess );
@@ -80,7 +78,8 @@ var hotColdReducer = function( state, action ) {
         counter: state.counter + 1,
         hotness: hotness,
         relative: relative,
-        guesslist: state.guesslist
+        guesslist: state.guesslist,
+        complete: complete
       } );
     }
   }

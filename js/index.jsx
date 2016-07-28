@@ -8,7 +8,6 @@ var GameContainer = require( './game-container' );
 var Nav = require( './nav' );
 
 document.addEventListener( 'DOMContentLoaded', function() {
-  store.dispatch( actions.updateFewest( store.getState().counter ) );
   store.dispatch( actions.newGame() );
   ReactDOM.render(
     <Provider store={store}>

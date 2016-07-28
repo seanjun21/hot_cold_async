@@ -1,6 +1,7 @@
 var React = require( 'react' );
 var connect = require( 'react-redux' ).connect;
 
+var actions = require( './actions' );
 var Nav = require( './nav' );
 var Overlay = require( './overlay' );
 var Game = require( './game' );
@@ -18,6 +19,19 @@ var Game = require( './game' );
 
 
 var GameContainer = React.createClass( {
+  componentDidMount: function() {
+    this.props.dispatch(
+      actions.fetchFewest( this.props.games.fewest )
+    );
+  },
+  componentWillReceiveProps: function( nextProps ) {
+    console.log( nextProps, 'NEXT PROPS' );
+    if ( nextProps.games.complete ) {
+      this.props.dispatch(
+        actions.updateFewest( nextProps.games.counter )
+      );
+    }
+  },
   render: function() {
     return (
       <div>
@@ -27,7 +41,7 @@ var GameContainer = React.createClass( {
           <h1>HOT or COLD</h1>
         </header>
         <Game guesslist={this.props.games.guesslist} counter={this.props.games.counter} hotness={this.props.games.hotness} relative={this.props.games.relative}/>
-        <p>{this.props.games.fewest}</p>
+        <p>{this.props.games.counter}</p>
       </div>
     );
   }
