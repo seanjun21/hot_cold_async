@@ -27,6 +27,7 @@ var GameContainer = React.createClass( {
           <h1>HOT or COLD</h1>
         </header>
         <Game guesslist={this.props.games.guesslist} counter={this.props.games.counter} hotness={this.props.games.hotness} relative={this.props.games.relative}/>
+        <p>{this.props.games.fewest}</p>
       </div>
     );
   }
