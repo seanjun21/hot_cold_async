@@ -20,17 +20,7 @@ var Game = require( './game' );
 
 var GameContainer = React.createClass( {
   componentDidMount: function() {
-    this.props.dispatch(
-      actions.fetchFewest( this.props.games.fewest )
-    );
-  },
-  componentWillReceiveProps: function( nextProps ) {
-    console.log( nextProps, 'NEXT PROPS' );
-    if ( nextProps.games.complete ) {
-      this.props.dispatch(
-        actions.updateFewest( nextProps.games.counter )
-      );
-    }
+    this.props.dispatch(actions.fetchFewest());
   },
   render: function() {
     return (
@@ -39,9 +29,10 @@ var GameContainer = React.createClass( {
           <Nav/>
           <Overlay show={this.props.games.show}/>
           <h1>HOT or COLD</h1>
+          <h1>{this.props.games.fewest}</h1>
         </header>
         <Game guesslist={this.props.games.guesslist} counter={this.props.games.counter} hotness={this.props.games.hotness} relative={this.props.games.relative}/>
-        <p>{this.props.games.counter}</p>
+        
       </div>
     );
   }

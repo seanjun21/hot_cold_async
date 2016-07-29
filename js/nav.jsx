@@ -4,7 +4,12 @@ var actions = require( './actions' );
 
 var Nav = React.createClass( {
   newGame: function() {
-    location.reload();
+    // if the user has won update the fewest tracker
+    if (this.props.games.complete) {
+      this.props.dispatch(actions.updateFewest(this.props.games.counter));
+    }
+    // load new game
+    this.props.dispatch(actions.newGame());
   },
   what: function() {
     this.props.dispatch( actions.what() );
@@ -24,7 +29,12 @@ var Nav = React.createClass( {
     );
   }
 } );
+var mapStateToProps = function( state, props ) {
+  return {
+    games: state
+  };
+};
 
-var Container = connect()( Nav );
+var Container = connect(mapStateToProps)( Nav );
 
 module.exports = Container;

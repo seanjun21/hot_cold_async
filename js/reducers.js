@@ -14,10 +14,9 @@ var hotColdReducer = function( state, action ) {
     return Object.assign( {}, state, {
       show: !state.show
     } );
-  }
-  if ( action.type === actions.NEW_GAME ) {
+  } else if ( action.type === actions.NEW_GAME ) {
     var randNum = Math.floor( ( Math.random() * 100 ) + 1 );
-    return {
+    return Object.assign({}, state, {
       correct: randNum,
       guess: null,
       counter: 0,
@@ -26,10 +25,8 @@ var hotColdReducer = function( state, action ) {
       guesslist: [],
       show: false,
       complete: false
-    };
-  }
-
-  if ( action.type === actions.MAKE_GUESS ) {
+    });
+  } else if ( action.type === actions.MAKE_GUESS ) {
     if ( state.counter > 9 ) {
       return Object.assign( {}, state, {
         hotness: 'You lose!',
@@ -82,26 +79,21 @@ var hotColdReducer = function( state, action ) {
         complete: complete
       } );
     }
-  }
-
-  if ( action.type === actions.FETCH_FEWEST_SUCESS ) {
+  } else if ( action.type === actions.FETCH_FEWEST_SUCCESS ) {
     return Object.assign( {}, state, {
       fewest: action.fewest
     } );
-  }
-  if ( action.type === actions.FETCH_FEWEST_ERROR ) {
+  } else if ( action.type === actions.FETCH_FEWEST_ERROR ) {
     console.log( action.error );
-  }
-  if ( action.type === actions.UPDATE_FEWEST_SUCCESS ) {
+  } else if ( action.type === actions.UPDATE_FEWEST_SUCCESS ) {
     return Object.assign( {}, state, {
       fewest: action.fewest
     } );
-  }
-  if ( action.type === actions.UPDATE_FEWEST_ERROR ) {
+  } else if ( action.type === actions.UPDATE_FEWEST_ERROR ) {
     console.log( action.error );
+  } else {
+    return state;
   }
-
-  return state;
 };
 
 exports.hotColdReducer = hotColdReducer;
